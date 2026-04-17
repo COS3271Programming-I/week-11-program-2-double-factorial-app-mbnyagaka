@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class DoubleFactorialApp {
+
+    static Scanner userinput = new Scanner(System.in);
+
+    public static int getValidNumber() {
+        int n;
+
+        while (true) {
+            System.out.print("Enter a positive integer less than 20: ");
+
+            if (userinput.hasNextInt()) {
+                n = userinput.nextInt();
+
+                if (n > 0 && n < 20) {
+                    return n;
+                } else {
+                    System.out.println("Error: number must be greater than 0 and less than 20.");
+                }
+            } else {
+                System.out.println("Error: please enter a whole number.");
+                userinput.next();
+            }
+        }
+    }
+
+    public static long doubleFactorial(int n) {
+        if (n == 1 || n == 2) {
+            return n;
+        } else {
+            return n * doubleFactorial(n - 2);
+        }
+    }
+
+    public static void main(String[] args) {
+        int n = getValidNumber();
+        long answer = doubleFactorial(n);
+
+        System.out.println(n + "!! = " + answer);
+    }
+}
